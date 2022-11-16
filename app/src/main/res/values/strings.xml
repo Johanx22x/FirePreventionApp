@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Fire Prevention App</string>
+    <string name="welcome_message">Welcome!</string>
+    <string name="show_temperature">Show temperature</string>
+    <string name="show_humidity">Show humidity</string>
+    <string name="show_gas">Show gas</string>
+    <string name="request_values">Request data</string>
+    <string name="app_background">App background</string>
+    <string name="show_status">Show Alerts</string>
+    <string name="connection_status">Device status: %s</string>
+    <string name="try_connect">Try Connect</string>
+    <string name="alert_title">Alerts Log</string>
+    <string name="alert_log">%s</string>
+    <string name="refresh">Refresh</string>
+    <string name="actual_temp">Actual temperature</string>
+    <string name="today_max_temp">Today maximum temperature</string>
+    <string name="temp_formatter">%s°</string>
+</resources>
