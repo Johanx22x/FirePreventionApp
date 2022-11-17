@@ -14,5 +14,5 @@
     <string name="refresh">Refresh</string>
     <string name="actual_temp">Actual temperature</string>
     <string name="today_max_temp">Today maximum temperature</string>
-    <string name="temp_formatter">%s°</string>
+    <string name="temp_formatter">%d°</string>
 </resources>
