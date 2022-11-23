@@ -14,5 +14,8 @@
     <string name="refresh">Refresh</string>
     <string name="actual_temp">Actual temperature</string>
     <string name="today_max_temp">Today maximum temperature</string>
-    <string name="temp_formatter">%d°</string>
+    <string name="actual_humidity">Actual humidity</string>
+    <string name="today_min_humidity">Today minimum humidity</string>
+    <string name="temp_formatter">%s°</string>
+    <string name="humidity_formatter">%s%s</string>
 </resources>
