@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.time.format.DateTimeFormatter
 
 @SuppressLint("MissingPermission")
 class BluetoothConnection(bluetoothSocket: BluetoothSocket?, private val context : MainActivity) : Thread() {
@@ -47,9 +46,11 @@ class BluetoothConnection(bluetoothSocket: BluetoothSocket?, private val context
                     break
                 }
 
+                // Read the data from the bluetooth device and parse it
                 response += read()
                 parseResponse()
-                // Log.d("BluetoothConnection", "Response: $response")
+
+                // Sleep for 1 second
                 sleep(1000)
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -95,9 +96,37 @@ class BluetoothConnection(bluetoothSocket: BluetoothSocket?, private val context
                 actualGas = actualGas.substring(0, actualGas.length - 1)
                 // Read after G: to get the actual gas value
                 actualGas = actualGas.substring(3)
-                if (actualGas != MainActivity.actualGas) {
-                    MainActivity.actualGas = actualGas
+
+                // Check if exists a new alert, split the string to get the alert type
+                val alertArray = actualGas.split("$")
+
+                // Check if the alertArray has 2 elements
+                if (alertArray.size == 2) {
+                    actualGas = alertArray[0]
+                    if (actualGas != MainActivity.actualGas) {
+                        MainActivity.actualGas = actualGas
+                    }
+
+                    actualAlert = alertArray[1]
+                    actualAlert = actualAlert.substring(3)
+                    // Get the current date time
+                    val currentDateTime =
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            java.time.LocalDateTime.now()
+                        } else {
+                            java.util.Calendar.getInstance().time
+                        }
+
+                    MainActivity.alertLog += "$currentDateTime - $actualAlert\n"
+                    Log.d("BluetoothConnection", "Alert: $actualAlert")
+                    // Alert the user with a notification
+                    context.alertUser(actualAlert)
+                } else if (alertArray.size == 1) {
+                    if (actualGas != MainActivity.actualGas) {
+                        MainActivity.actualGas = actualGas
+                    }
                 }
+
                 response = ""
             }
             1 -> {
@@ -114,6 +143,7 @@ class BluetoothConnection(bluetoothSocket: BluetoothSocket?, private val context
                 }
                 MainActivity.alertLog += "$currentDateTime - $actualAlert\n"
                 Log.d("BluetoothConnection", "Alert: $actualAlert")
+                context.alertUser(actualAlert)
                 response = ""
             }
             else -> {
@@ -133,7 +163,7 @@ class BluetoothConnection(bluetoothSocket: BluetoothSocket?, private val context
         }
     }
 
-    fun read(): String {
+    private fun read(): String {
         val buffer = ByteArray(1024)
         var bytes = 0
         try {

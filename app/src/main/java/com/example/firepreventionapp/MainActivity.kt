@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.io.IOException
@@ -165,5 +166,15 @@ class MainActivity : AppCompatActivity() {
     fun resetMinAndMax() {
         minHumidity = "100"
         maxTemperature = "0"
+    }
+
+    fun alertUser(alert: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Alert")
+        builder.setMessage(alert)
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        runOnUiThread { builder.show() }
     }
 }
