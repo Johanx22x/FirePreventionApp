@@ -16,6 +16,8 @@
     <string name="today_max_temp">Today maximum temperature</string>
     <string name="actual_humidity">Actual humidity</string>
     <string name="today_min_humidity">Today minimum humidity</string>
+    <string name="actual_gas">Actual gas value</string>
     <string name="temp_formatter">%s°</string>
     <string name="humidity_formatter">%s%s</string>
+    <string name="gas_formatter">%s ppm</string>
 </resources>

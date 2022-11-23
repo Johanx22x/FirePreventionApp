@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_alert.xml" value="0.22010869565217392" />
-        <entry key="app/src/main/res/layout/activity_gas.xml" value="0.18854166666666666" />
+        <entry key="app/src/main/res/layout/activity_gas.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_humidity.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/activity_temperature.xml" value="0.1" />
